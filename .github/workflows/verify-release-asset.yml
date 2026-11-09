@@ -1,0 +1,20 @@
+name: verify-release-asset
+
+on:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Anonymous HEAD + full download
+        run: |
+          URL="https://github.com/sunset69/plugin-manager-releases/releases/download/v1.0.1-quickcapture/PluginManager-v1.0.1-arm64.apk"
+          echo "== headers =="
+          curl -sS -L -I "$URL" | grep -Ei '^HTTP|^content-length|^content-type'
+          echo "== download =="
+          curl -sS -L -o /tmp/app.apk -w "http_code=%{http_code}\nsize_download=%{size_download}\n" "$URL"
+          echo "== file =="
+          ls -l /tmp/app.apk
+          echo "sha256=$(sha256sum /tmp/app.apk | cut -d' ' -f1)"
+          echo "expected=B1D7E5AA9CF1B3CCE82257A50EC710F632419CE8D7907461E0703821097A7569"
