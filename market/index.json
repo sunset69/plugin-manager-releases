@@ -1,0 +1,67 @@
+{
+  "format": 1,
+  "generator": "plugin-manager",
+  "updatedAt": "2026-11-09T06:13:17.321Z",
+  "plugins": [
+    {
+      "id": "com.demo.calculator",
+      "name": "计算器",
+      "version": "1.0.0",
+      "description": "一个简单的四则运算计算器",
+      "author": "demo",
+      "permissions": [],
+      "size": 1346,
+      "sha256": "e79f8a8d5e3a1e7f5d1efcdc3452cf98c4dd6cda05b34c6741fada18bd4ba586",
+      "downloadUrl": "plugins/com.demo.calculator.zip"
+    },
+    {
+      "id": "com.demo.notes",
+      "name": "笔记",
+      "version": "1.0.0",
+      "description": "轻量级笔记插件，支持本地存储",
+      "author": "demo",
+      "permissions": [
+        "storage"
+      ],
+      "size": 1421,
+      "sha256": "f066e56f1ef969d3b1ced96fe9122397298ca6aa9f3802ac368b136b14654a66",
+      "downloadUrl": "plugins/com.demo.notes.zip"
+    },
+    {
+      "id": "com.demo.device",
+      "name": "原生能力演示",
+      "version": "1.1.0",
+      "description": "演示相机、定位、传感器、通知、剪贴板、震动、设备状态、文件读写与生物识别",
+      "author": "demo",
+      "permissions": [
+        "clipboard",
+        "vibrate",
+        "device",
+        "sensors",
+        "notification",
+        "files",
+        "location",
+        "camera",
+        "biometric"
+      ],
+      "size": 2514,
+      "sha256": "826b2659fdc5bad56d81583ec87955874984ff42a93bb834d79866b886c1d422",
+      "downloadUrl": "plugins/com.demo.device.zip"
+    },
+    {
+      "id": "com.demo.quickcapture",
+      "name": "通知栏快捷拍照",
+      "version": "1.0.0",
+      "description": "在通知栏与快捷设置里加一个拍照入口，不用打开 App 就能拍照并保存",
+      "author": "demo",
+      "permissions": [
+        "quickCapture",
+        "camera",
+        "notification"
+      ],
+      "size": 2171,
+      "sha256": "9c7cd56c29ea32290ca3f4ad9e0bc0427fc23ac0d8ffda25b6980b7d9b0e620c",
+      "downloadUrl": "plugins/com.demo.quickcapture.zip"
+    }
+  ]
+}
