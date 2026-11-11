@@ -1,7 +1,7 @@
 {
   "format": 1,
   "generator": "plugin-manager",
-  "updatedAt": "2026-11-11T15:52:49.263Z",
+  "updatedAt": "2026-11-11T16:07:17.226Z",
   "plugins": [
     {
       "id": "com.demo.calculator",
@@ -79,7 +79,7 @@
     {
       "id": "com.demo.aipluginbuilder",
       "name": "AI 造插件",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "description": "配置 AI 接口，用一句话生成插件；本地校验、预览、导出 zip，确认权限后一键安装并打开；支持流式输出、超时诊断与推理型模型",
       "author": "demo",
       "permissions": [
@@ -88,8 +88,8 @@
         "pluginBuild",
         "exportFile"
       ],
-      "size": 18479,
-      "sha256": "37b279aaa4f7a4d64449c4d7b741bb6015c887038f773317a2ed6041ac050ae2",
+      "size": 18533,
+      "sha256": "a59a452de879ef3f67511da67c18f0294d2b2eda3b8bc7d8ec3d32a7a2887df4",
       "downloadUrl": "plugins/com.demo.aipluginbuilder.zip"
     }
   ]
