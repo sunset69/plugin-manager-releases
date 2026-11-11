@@ -1,0 +1,10 @@
+{
+  "versionCode": 5,
+  "versionName": "1.1.1",
+  "size": 16745176,
+  "sha256": "720adcd8b1d94d73f72bcbbdac02efbd8ffdc6f8b416d1b05853b966b2f9cbcc",
+  "downloadUrl": "https://github.com/sunset69/plugin-manager-releases/releases/download/v1.1.1/PluginManager-release-arm64.apk",
+  "notes": "插件升级：市场与已安装列表支持检查更新、单个/全部更新，升级保留插件数据。主软件升级：新增软件更新页面，支持下载进度、大小与 sha256 校验、签名检查、系统安装器安装，以及忽略此版本和启动时检查开关。",
+  "minSdk": 23,
+  "publishedAt": "2026-11-11"
+}
