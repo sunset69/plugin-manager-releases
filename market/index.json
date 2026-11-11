@@ -1,7 +1,7 @@
 {
   "format": 1,
   "generator": "plugin-manager",
-  "updatedAt": "2026-11-11T13:57:19.932Z",
+  "updatedAt": "2026-11-11T15:07:06.669Z",
   "plugins": [
     {
       "id": "com.demo.calculator",
@@ -75,6 +75,22 @@
       "size": 8377,
       "sha256": "6f054d1ea60842945c2807dcfc2cbd8bb07317355638d48be7d2ce9677f72d73",
       "downloadUrl": "plugins/com.demo.mathpractice.zip"
+    },
+    {
+      "id": "com.demo.aipluginbuilder",
+      "name": "AI 造插件",
+      "version": "1.0.0",
+      "description": "配置 AI 接口，用一句话生成插件；本地校验、预览、导出 zip，确认权限后一键安装并打开",
+      "author": "demo",
+      "permissions": [
+        "storage",
+        "network",
+        "pluginBuild",
+        "exportFile"
+      ],
+      "size": 9537,
+      "sha256": "85a405527cfd5ac9d9b0d62e529053ac729ea232d07fa0a1e253e67ffc9d887c",
+      "downloadUrl": "plugins/com.demo.aipluginbuilder.zip"
     }
   ]
 }
