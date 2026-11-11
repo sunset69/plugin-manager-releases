@@ -1,10 +1,10 @@
 {
-  "versionCode": 7,
-  "versionName": "1.2.1",
-  "size": 16753004,
-  "sha256": "5046a2cfd9ba909c4f2754ab27341df65c67e2bf64fadf1b6e9ba2868c0c8ff1",
-  "downloadUrl": "https://github.com/sunset69/plugin-manager-releases/releases/download/v1.2.1/PluginManager-release-arm64.apk",
-  "notes": "AI 造插件修复请求超时误判：改为流式接收与可配置空闲超时（默认 120 秒），错误信息显示实际 URL、HTTP 状态、服务端正文摘要与超时阶段；兼容推理型模型 reasoning_content；测试连接显示耗时与模型列表并提示 /v1；新增服务商预设、可编辑插件生成 Skill，校验失败可带具体错误让 AI 修正。",
+  "versionCode": 8,
+  "versionName": "1.2.2",
+  "size": 16753238,
+  "sha256": "43d85314cdcd779d2ebd88d407cffdd27b6d2aa23cc83ed5888c08e8ec9112a5",
+  "downloadUrl": "https://github.com/sunset69/plugin-manager-releases/releases/download/v1.2.2/PluginManager-release-arm64.apk",
+  "notes": "修复市场索引在部分 jsDelivr 线路返回旧版本导致看不到插件新版：改为多镜像并行取最新索引，并在应用更新检查中加入备用 CDN。实测模拟器市场已显示 AI 造插件 v1.2.1 并可更新安装。",
   "minSdk": 23,
   "publishedAt": "2026-11-11"
 }
