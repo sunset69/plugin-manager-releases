@@ -1,7 +1,7 @@
 {
   "format": 1,
   "generator": "plugin-manager",
-  "updatedAt": "2026-11-11T11:58:47.197Z",
+  "updatedAt": "2026-11-11T12:28:12.055Z",
   "plugins": [
     {
       "id": "com.demo.calculator",
@@ -66,14 +66,14 @@
     {
       "id": "com.demo.mathpractice",
       "name": "运算练习",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "description": "四则运算练习：可选题型、难度与题量，即时判题、错题重做与成绩历史",
       "author": "demo",
       "permissions": [
         "storage"
       ],
-      "size": 7937,
-      "sha256": "506a9ffb99076f32548385ad6e00bbf25c557852cb249a008e27f2e5a950d01c",
+      "size": 8377,
+      "sha256": "888dae88f36923a4b9c22b1e5e5670bfbd88b8d94c6a9d9b760a90602da7c367",
       "downloadUrl": "plugins/com.demo.mathpractice.zip"
     }
   ]
