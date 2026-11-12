@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -85,9 +85,10 @@ jobs:
             TITLE="$TAG"
           fi
           echo "title=$TITLE" >> "$GITHUB_OUTPUT"
-          echo "使用说明来源：$(grep notes_source "$GITHUB_OUTPUT" | cut -d= -f2)"
+          echo "说明来源：$(grep notes_source "$GITHUB_OUTPUT" | cut -d= -f2)"
 
       - name: Create or update release
+        id: rel
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.meta.outputs.tag }}
@@ -95,13 +96,31 @@ jobs:
           NOTES: ${{ steps.meta.outputs.notes }}
         run: |
           set -euo pipefail
-          if gh release view "$TAG" >/dev/null 2>&1; then
-            echo "Release $TAG 已存在：更新标题与正文（不新建 Release）"
+          # tag 必须真实存在：workflow_dispatch 输错 tag 时给出明确错误，而不是建出孤立 Release
+          if ! gh api "repos/${GITHUB_REPOSITORY}/git/ref/tags/$TAG" >/dev/null 2>&1; then
+            echo "::error::tag $TAG 不存在。请先推送 tag（git push origin $TAG），或在手动运行时输入已存在的 tag。"
+            exit 1
+          fi
+
+          REL_ID=$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/$TAG" --jq .id 2>/dev/null || true)
+          if [ -n "$REL_ID" ]; then
+            echo "Release $TAG 已存在（id=$REL_ID）：更新标题与正文，不新建"
             gh release edit "$TAG" --title "$TITLE" --notes-file "$NOTES"
           else
+            # 兼容历史故障：tag 曾被删除又重建时，旧 Release 会变成同名但“未关联 tag”的孤立记录，
+            # 此时按 tag 查询 404，必须删除后重建，否则后续上传与校验都会 404。
+            ORPHAN_ID=$(gh api "repos/${GITHUB_REPOSITORY}/releases?per_page=100" \
+              --jq ".[] | select(.tag_name == \"$TAG\") | .id" | head -n 1)
+            if [ -n "$ORPHAN_ID" ]; then
+              echo "::warning::发现 tag $TAG 的孤立 Release（id=$ORPHAN_ID，tag 曾被删除），删除后重建以保证关联正常"
+              gh api -X DELETE "repos/${GITHUB_REPOSITORY}/releases/$ORPHAN_ID"
+            fi
             echo "Release $TAG 不存在：创建"
             gh release create "$TAG" --title "$TITLE" --notes-file "$NOTES" --verify-tag
+            REL_ID=$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/$TAG" --jq .id)
           fi
+          echo "release_id=$REL_ID" >> "$GITHUB_OUTPUT"
+          echo "release_id=$REL_ID"
 
       - name: Upload assets
         env:
@@ -118,19 +137,23 @@ jobs:
           # --clobber：同名资产覆盖，重复触发不会产生重复附件
           gh release upload "$TAG" "${files[@]}" --clobber
 
-      - name: Verify release (UTF-8 / asset / sha256)
+      - name: Verify release (UTF-8 / tag link / asset / sha256)
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.meta.outputs.tag }}
+          REL_ID: ${{ steps.rel.outputs.release_id }}
         run: |
           set -euo pipefail
-          gh api "repos/${{ github.repository }}/releases/tags/$TAG" > release.json
+          # 按 tag 查询必须成功：确保 Release 没有变成孤立记录
+          gh api "repos/${GITHUB_REPOSITORY}/releases/tags/$TAG" > /dev/null
+          gh api "repos/${GITHUB_REPOSITORY}/releases/$REL_ID" > release.json
           node - <<'NODE'
           const fs = require('fs');
           const rel = JSON.parse(fs.readFileSync('release.json', 'utf8'));
           if (!rel.name || rel.name.includes('\uFFFD')) throw new Error('Release 标题为空或包含替换字符 U+FFFD');
           if (!rel.body || rel.body.includes('\uFFFD')) throw new Error('Release 正文为空或包含替换字符 U+FFFD');
           if (rel.draft) throw new Error('Release 仍是草稿状态');
+          if (rel.tag_name !== process.env.TAG) throw new Error(`Release 关联的 tag 不正确：${rel.tag_name}`);
           const names = rel.assets.map((a) => a.name);
           const apk = rel.assets.find((a) => a.name.endsWith('.apk'));
           if (names.filter((n) => n.endsWith('.apk')).length > 1) throw new Error('存在重复 APK 附件');
@@ -138,7 +161,6 @@ jobs:
           if (version.versionName && rel.tag_name === `v${version.versionName}`) {
             if (!apk) throw new Error('当前版本 Release 缺少 APK 附件');
             if (apk.size !== version.size) throw new Error(`APK 大小不一致：${apk.size} != ${version.size}`);
-            const assetApi = rel.assets_url;
             console.log(`APK sha256（GitHub digest）：${apk.digest || '未提供'}`);
             if (apk.digest && apk.digest !== `sha256:${version.sha256}`) {
               throw new Error('APK digest 与 version.json 的 sha256 不一致');
