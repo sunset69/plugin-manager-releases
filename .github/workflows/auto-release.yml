@@ -1,0 +1,160 @@
+name: Auto Release
+
+# 触发方式：
+# 1) 推送 v* tag（推荐，版本号由 tag 决定，最稳定）
+# 2) 手动 workflow_dispatch，用于补发或更新已有 Release
+# 不在 main 的每次 push 上发版：市场索引更新频繁，避免产生大量空 Release。
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '要发布或更新的 tag（例如 v1.3.0）'
+        required: true
+        type: string
+      title:
+        description: '可选：Release 标题，留空自动生成'
+        required: false
+        type: string
+
+# 只使用仓库自带的 GITHUB_TOKEN，授予写 Release 所需的最小权限
+permissions:
+  contents: write
+
+# 同一 tag 串行执行，避免重复触发时并发上传同一资产
+concurrency:
+  group: auto-release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve tag / title / notes
+        id: meta
+        env:
+          TAG_INPUT: ${{ inputs.tag }}
+          TAG_REF: ${{ github.ref_name }}
+          TITLE_INPUT: ${{ inputs.title }}
+        run: |
+          set -euo pipefail
+          TAG="${TAG_INPUT:-$TAG_REF}"
+          case "$TAG" in
+            v*) ;;
+            *) echo "::error::tag 必须以 v 开头（收到 $TAG）"; exit 1 ;;
+          esac
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+          if [ -f "release-notes-$TAG.md" ]; then
+            NOTES="release-notes-$TAG.md"
+            echo "notes_source=file:release-notes-$TAG.md" >> "$GITHUB_OUTPUT"
+          else
+            NOTES=".release-notes-$TAG.md"
+            {
+              echo "## $TAG 自动发布"
+              echo
+              PREV=$(git describe --tags --abbrev=0 "$TAG^" 2>/dev/null || true)
+              if [ -n "$PREV" ] && [ "$PREV" != "$TAG" ]; then
+                echo "变更范围：$PREV..$TAG"
+                echo
+                git log --no-merges --pretty=format:'- %s（%h）' "$PREV..$TAG"
+              else
+                echo "提交记录："
+                echo
+                git log -20 --no-merges --pretty=format:'- %s（%h）'
+              fi
+              echo
+            } > "$NOTES"
+            echo "notes_source=generated" >> "$GITHUB_OUTPUT"
+          fi
+          echo "notes=$NOTES" >> "$GITHUB_OUTPUT"
+
+          VERSION_NAME=$(node -e "try{const v=require('./version.json');process.stdout.write(v.versionName||'')}catch(e){}")
+          if [ -n "${TITLE_INPUT:-}" ]; then
+            TITLE="$TITLE_INPUT"
+          elif [ "$VERSION_NAME" = "${TAG#v}" ]; then
+            TITLE="插件管理器 $TAG"
+          else
+            TITLE="$TAG"
+          fi
+          echo "title=$TITLE" >> "$GITHUB_OUTPUT"
+          echo "使用说明来源：$(grep notes_source "$GITHUB_OUTPUT" | cut -d= -f2)"
+
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.meta.outputs.tag }}
+          TITLE: ${{ steps.meta.outputs.title }}
+          NOTES: ${{ steps.meta.outputs.notes }}
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG 已存在：更新标题与正文（不新建 Release）"
+            gh release edit "$TAG" --title "$TITLE" --notes-file "$NOTES"
+          else
+            echo "Release $TAG 不存在：创建"
+            gh release create "$TAG" --title "$TITLE" --notes-file "$NOTES" --verify-tag
+          fi
+
+      - name: Upload assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.meta.outputs.tag }}
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          files=(assets/*.apk assets/*.zip)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "::warning::assets/ 下没有 apk/zip 附件，Release 将不带附件"
+            exit 0
+          fi
+          # --clobber：同名资产覆盖，重复触发不会产生重复附件
+          gh release upload "$TAG" "${files[@]}" --clobber
+
+      - name: Verify release (UTF-8 / asset / sha256)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.meta.outputs.tag }}
+        run: |
+          set -euo pipefail
+          gh api "repos/${{ github.repository }}/releases/tags/$TAG" > release.json
+          node - <<'NODE'
+          const fs = require('fs');
+          const rel = JSON.parse(fs.readFileSync('release.json', 'utf8'));
+          if (!rel.name || rel.name.includes('\uFFFD')) throw new Error('Release 标题为空或包含替换字符 U+FFFD');
+          if (!rel.body || rel.body.includes('\uFFFD')) throw new Error('Release 正文为空或包含替换字符 U+FFFD');
+          if (rel.draft) throw new Error('Release 仍是草稿状态');
+          const names = rel.assets.map((a) => a.name);
+          const apk = rel.assets.find((a) => a.name.endsWith('.apk'));
+          if (names.filter((n) => n.endsWith('.apk')).length > 1) throw new Error('存在重复 APK 附件');
+          const version = JSON.parse(fs.readFileSync('version.json', 'utf8'));
+          if (version.versionName && rel.tag_name === `v${version.versionName}`) {
+            if (!apk) throw new Error('当前版本 Release 缺少 APK 附件');
+            if (apk.size !== version.size) throw new Error(`APK 大小不一致：${apk.size} != ${version.size}`);
+            const assetApi = rel.assets_url;
+            console.log(`APK sha256（GitHub digest）：${apk.digest || '未提供'}`);
+            if (apk.digest && apk.digest !== `sha256:${version.sha256}`) {
+              throw new Error('APK digest 与 version.json 的 sha256 不一致');
+            }
+          }
+          console.log(`OK ${rel.tag_name} | ${rel.name} | assets=${rel.assets.map((a) => `${a.name}:${a.size}`).join(',')}`);
+          NODE
+
+      - name: Summary
+        if: always()
+        env:
+          TAG: ${{ steps.meta.outputs.tag }}
+        run: |
+          {
+            echo "### Auto Release $TAG"
+            echo
+            echo "- 附件：$(ls assets 2>/dev/null | tr '\n' ' ' || echo '无')"
+            echo "- 说明文件：${{ steps.meta.outputs.notes_source }}"
+          } >> "$GITHUB_STEP_SUMMARY"
