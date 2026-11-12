@@ -1,7 +1,7 @@
 {
   "format": 1,
   "generator": "plugin-manager",
-  "updatedAt": "2026-11-12T05:43:19.209Z",
+  "updatedAt": "2026-11-12T08:09:11.263Z",
   "plugins": [
     {
       "id": "com.demo.calculator",
@@ -11,7 +11,7 @@
       "author": "demo",
       "permissions": [],
       "size": 1346,
-      "sha256": "8656a5f11dec3da1a30fbc3fd6b7af1c2770dbea8ad1cebe78e5cf8ab0222b59",
+      "sha256": "69ef9e33720a3fa0511bf717918471ca7947bfae4f910d673776e81a6d756529",
       "downloadUrl": "plugins/com.demo.calculator.zip"
     },
     {
@@ -24,7 +24,7 @@
         "storage"
       ],
       "size": 1421,
-      "sha256": "a49ca6e2e296baaef0bebc5c044663d6e788c6d543ef27d45b0d2d0ea58c567e",
+      "sha256": "bb00cfaac9cd81f31d3d8d92d019079743408c9de0d0467165193409026b9584",
       "downloadUrl": "plugins/com.demo.notes.zip"
     },
     {
@@ -45,7 +45,7 @@
         "biometric"
       ],
       "size": 2514,
-      "sha256": "eb703a2295097078aa4c8690bec67b774c7b6c5ff17473964bd013ea5a2c3a4a",
+      "sha256": "1060a6e7157a2ad7fffd667cfeaffff68fcf9ea3bb7bb3923c6b20975fc5c799",
       "downloadUrl": "plugins/com.demo.device.zip"
     },
     {
@@ -60,7 +60,7 @@
         "notification"
       ],
       "size": 2171,
-      "sha256": "a63a43e006feb25b1bbbbb0e83cd20ab99b96eacc54a060e4e066a141aadce0d",
+      "sha256": "77a5da86db289ab3238147cb6d851b748d1acc17ff8e43cb09ca98567f8406db",
       "downloadUrl": "plugins/com.demo.quickcapture.zip"
     },
     {
@@ -73,14 +73,14 @@
         "storage"
       ],
       "size": 8377,
-      "sha256": "42c42a5d5924874121a77d8caca858c607aa9d36be113416b7bb5ff7bc727b94",
+      "sha256": "083d8661787e3b1192771fff043bf40d387ff7aa4df660b7102920ae10988047",
       "downloadUrl": "plugins/com.demo.mathpractice.zip"
     },
     {
       "id": "com.demo.aipluginbuilder",
       "name": "AI 造插件",
-      "version": "1.5.0",
-      "description": "方案优先的插件生成器：先出结构化方案与界面预览，确认后生成；内置可查看/编辑/恢复默认的界面设计规范，方案与代码共同受约束；支持连续改码、每轮校验与版本递增、会话库（命名/继续/删除/导出导入）、同名插件覆盖/升版本/改名安装",
+      "version": "1.6.0",
+      "description": "方案优先的插件生成器：先出结构化方案与界面预览，确认后生成；长对话按首字等待/流式空闲分阶段计时，生成期间前台保活，切后台可继续并在中断后恢复上下文；内置可查看/编辑/恢复默认的界面设计规范；支持连续改码、每轮校验与版本递增、会话库、同名插件覆盖/升版本/改名安装",
       "author": "demo",
       "permissions": [
         "storage",
@@ -89,8 +89,8 @@
         "pluginBuild",
         "exportFile"
       ],
-      "size": 38891,
-      "sha256": "93d6838754004beed5bfa4dbdeeb3273cf6dbd03dd5fea13858d8454957a3eaa",
+      "size": 41608,
+      "sha256": "e11f3e58c0ca4b772d4536a39794f716f79e345864c7968af932f584fba0c1cd",
       "downloadUrl": "plugins/com.demo.aipluginbuilder.zip"
     }
   ]
