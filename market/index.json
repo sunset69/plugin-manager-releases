@@ -1,7 +1,7 @@
 {
   "format": 1,
   "generator": "plugin-manager",
-  "updatedAt": "2026-11-12T08:09:11.263Z",
+  "updatedAt": "2026-11-12T10:13:20.069Z",
   "plugins": [
     {
       "id": "com.demo.calculator",
@@ -11,7 +11,7 @@
       "author": "demo",
       "permissions": [],
       "size": 1346,
-      "sha256": "69ef9e33720a3fa0511bf717918471ca7947bfae4f910d673776e81a6d756529",
+      "sha256": "037593c64311d8e65ddbee02f920802d70368ed67619050965db3e428d1624f0",
       "downloadUrl": "plugins/com.demo.calculator.zip"
     },
     {
@@ -24,7 +24,7 @@
         "storage"
       ],
       "size": 1421,
-      "sha256": "bb00cfaac9cd81f31d3d8d92d019079743408c9de0d0467165193409026b9584",
+      "sha256": "7e9fb112658824a60293e70178ddf594a318b263088132a85af1ac0129b5312f",
       "downloadUrl": "plugins/com.demo.notes.zip"
     },
     {
@@ -45,7 +45,7 @@
         "biometric"
       ],
       "size": 2514,
-      "sha256": "1060a6e7157a2ad7fffd667cfeaffff68fcf9ea3bb7bb3923c6b20975fc5c799",
+      "sha256": "302b47230e5a6c80ba396b4744a85de73aab91d5861a2f174b3f2d6f190f40d9",
       "downloadUrl": "plugins/com.demo.device.zip"
     },
     {
@@ -60,7 +60,7 @@
         "notification"
       ],
       "size": 2171,
-      "sha256": "77a5da86db289ab3238147cb6d851b748d1acc17ff8e43cb09ca98567f8406db",
+      "sha256": "423594b57602d2b85026e41a3ff2d4e8f8dc9df04636d36ae8fee1c37afbf5c2",
       "downloadUrl": "plugins/com.demo.quickcapture.zip"
     },
     {
@@ -73,13 +73,13 @@
         "storage"
       ],
       "size": 8377,
-      "sha256": "083d8661787e3b1192771fff043bf40d387ff7aa4df660b7102920ae10988047",
+      "sha256": "76760c0e5ec4c872560c809757859059f9b50f44bfa4e5044512b59362f40bc5",
       "downloadUrl": "plugins/com.demo.mathpractice.zip"
     },
     {
       "id": "com.demo.aipluginbuilder",
       "name": "AI 造插件",
-      "version": "1.6.0",
+      "version": "1.6.1",
       "description": "方案优先的插件生成器：先出结构化方案与界面预览，确认后生成；长对话按首字等待/流式空闲分阶段计时，生成期间前台保活，切后台可继续并在中断后恢复上下文；内置可查看/编辑/恢复默认的界面设计规范；支持连续改码、每轮校验与版本递增、会话库、同名插件覆盖/升版本/改名安装",
       "author": "demo",
       "permissions": [
@@ -89,8 +89,8 @@
         "pluginBuild",
         "exportFile"
       ],
-      "size": 41608,
-      "sha256": "e11f3e58c0ca4b772d4536a39794f716f79e345864c7968af932f584fba0c1cd",
+      "size": 41771,
+      "sha256": "4f25663cb7a80d3f5c97f7520d2e0fffa14398d25d7079c097cb92835342c69d",
       "downloadUrl": "plugins/com.demo.aipluginbuilder.zip"
     }
   ]
