@@ -1,10 +1,10 @@
 {
-  "versionCode": 8,
-  "versionName": "1.2.2",
-  "size": 16753238,
-  "sha256": "43d85314cdcd779d2ebd88d407cffdd27b6d2aa23cc83ed5888c08e8ec9112a5",
-  "downloadUrl": "https://github.com/sunset69/plugin-manager-releases/releases/download/v1.2.2/PluginManager-release-arm64.apk",
-  "notes": "修复市场索引在部分 jsDelivr 线路返回旧版本导致看不到插件新版：改为多镜像并行取最新索引，并在应用更新检查中加入备用 CDN。实测模拟器市场已显示 AI 造插件 v1.2.1 并可更新安装。",
+  "versionCode": 9,
+  "versionName": "1.3.0",
+  "size": 16774377,
+  "sha256": "b7fd53c0435e68c774d67e3b166f1b79f6e2b3ce2e762c82af65bd35ea533788",
+  "downloadUrl": "https://github.com/sunset69/plugin-manager-releases/releases/download/v1.3.0/PluginManager-release-arm64.apk",
+  "notes": "新增本机导入插件（zip/目录，走完整校验管线）、两段式返回与插件内返回提示、仓库介绍页；AI 造插件升级 1.6.0：分阶段空闲超时、阈值可视化、生成期间前台保活、切后台继续与中断恢复。",
   "minSdk": 23,
-  "publishedAt": "2026-11-11"
+  "publishedAt": "2026-11-12"
 }
