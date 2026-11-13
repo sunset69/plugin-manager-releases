@@ -1,7 +1,7 @@
 {
   "format": 1,
   "generator": "plugin-manager",
-  "updatedAt": "2026-11-13T07:46:59.974Z",
+  "updatedAt": "2026-11-13T08:51:01.314Z",
   "plugins": [
     {
       "id": "com.demo.calculator",
@@ -11,7 +11,7 @@
       "author": "demo",
       "permissions": [],
       "size": 1346,
-      "sha256": "93a0c7d06b0c4638f8d88e5ed1fc686370df95c493bb0c64859ef079fa97459b",
+      "sha256": "a76489de3926738886d92a21eb3066324ab5db26d00140199367956012dadf1e",
       "downloadUrl": "plugins/com.demo.calculator.zip"
     },
     {
@@ -24,7 +24,7 @@
         "storage"
       ],
       "size": 1421,
-      "sha256": "cb0a69d95cb6f8d3355744633d50a6bba9d9dbae6126e6f40a7c8ce1e6e4861b",
+      "sha256": "f03096c1a31ec08f5e45616d0391113de7c6ac2ad405b8b1d9e6ca27d2169253",
       "downloadUrl": "plugins/com.demo.notes.zip"
     },
     {
@@ -45,7 +45,7 @@
         "biometric"
       ],
       "size": 2514,
-      "sha256": "314088aced6a61ce850caee251318aa144479084fa45f5f7f8cfc96bc11efb81",
+      "sha256": "f727c5754ffd512beb33fb372cbd6787936503b04275f01ed19ed0a1ea2ba311",
       "downloadUrl": "plugins/com.demo.device.zip"
     },
     {
@@ -60,7 +60,7 @@
         "notification"
       ],
       "size": 2171,
-      "sha256": "d77196ca1180d29578a761c1d1d0c30c35d0a523986ee8adaf4e135cbbbf8b9f",
+      "sha256": "f381beea4b3c55f3e0a9311e0f0b4db047a8ceb7f3fad93f7c2c2f897064ef67",
       "downloadUrl": "plugins/com.demo.quickcapture.zip"
     },
     {
@@ -73,7 +73,7 @@
         "storage"
       ],
       "size": 8377,
-      "sha256": "ffabc8211ebece9b1f97b59392edf233607778ba1ef690d081d985105b38b5d2",
+      "sha256": "296d2bcbf69477a681628396184ccee91a8045d9ae2e8dcac0b1e9a329894a88",
       "downloadUrl": "plugins/com.demo.mathpractice.zip"
     },
     {
@@ -90,21 +90,21 @@
         "exportFile"
       ],
       "size": 41771,
-      "sha256": "e8b7c3dee2b35945738c60ad9c7c4c6ed12193a4ad5545fe079e68b5c5365ec6",
+      "sha256": "83c5b5d6122e71715c90aa09e7db6b74b0a07196a11b083ab2342545b4c6b675",
       "downloadUrl": "plugins/com.demo.aipluginbuilder.zip"
     },
     {
       "id": "com.demo.fileviewer",
       "name": "文件预览",
-      "version": "1.0.0",
-      "description": "打开本机文本/代码/图片/漫画，文本可直接编辑并保存回原文件；PDF、Office、音视频交给系统应用打开；文件类型由可注册渲染器扩展",
+      "version": "1.1.0",
+      "description": "打开本机文本/代码/图片/漫画，文本可直接编辑并保存回原文件；支持从其它应用「分享」文件直接预览（单文件/多文件/目录）；PDF、Office、音视频交给系统应用打开；文件类型由可注册渲染器扩展",
       "author": "demo",
       "permissions": [
         "filePreview",
         "storage"
       ],
-      "size": 11837,
-      "sha256": "aaabb00eaaf5d0df2f55c55c331c12a4961cd628c274fea5add6706c8436501d",
+      "size": 12488,
+      "sha256": "13d7ce9c76aa9a8edb1651ad91fa2094a9f6242d743e71dd1a038ff02a646fb9",
       "downloadUrl": "plugins/com.demo.fileviewer.zip"
     }
   ]
