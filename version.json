@@ -1,10 +1,10 @@
 {
-  "versionCode": 12,
-  "versionName": "1.3.3",
-  "size": 16790622,
-  "sha256": "05fbe5dca932fc06e219433d2fa483ccd102c223b7e6c7e0068089b12fcca11c",
-  "downloadUrl": "https://github.com/sunset69/plugin-manager-releases/releases/download/v1.3.3/PluginManager-release-arm64.apk",
-  "notes": "修复插件无法更新：市场索引同时对比 jsDelivr / Statically / GitHub raw / ghproxy 等 6 条线路并取最新一份，避免某条 CDN 仍返回旧索引导致显示「已是最新」；下载插件包后按索引校验 size 与 sha256，不一致自动换线路重试并给出明确提示；插件详情页新增市场索引来源、版本、大小与「刷新市场索引」按钮。文件预览插件仍为 1.1.0，无需变更。",
+  "versionCode": 13,
+  "versionName": "1.3.4",
+  "size": 16790911,
+  "sha256": "82f83a4391293012de9f01bf08f3bbff242e928fa8fcb6c7485fcd4a15e42b8c",
+  "downloadUrl": "https://github.com/sunset69/plugin-manager-releases/releases/download/v1.3.4/PluginManager-release-arm64.apk",
+  "notes": "修复插件无法更新：市场索引同时对比 jsDelivr / Statically / GitHub raw / ghproxy 等 6 条线路取最新一份，下载插件包按 size 与 sha256 校验并自动换线路重试，详情页新增市场索引来源与刷新按钮；App 自身检查更新也改为多线路取最高 versionCode，安装包下载增加镜像兜底。建议升级到该版本，文件预览插件市场版本仍为 1.1.0。",
   "minSdk": 23,
   "publishedAt": "2026-11-13"
 }
