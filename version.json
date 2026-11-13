@@ -1,10 +1,10 @@
 {
-  "versionCode": 10,
-  "versionName": "1.3.1",
-  "size": 16783875,
-  "sha256": "a615385b72708cca1bb54679562bd0eec4511bf92e2f7c556abb4591daf9aef7",
-  "downloadUrl": "https://github.com/sunset69/plugin-manager-releases/releases/download/v1.3.1/PluginManager-release-arm64.apk",
-  "notes": "插件返回键改为先交给插件处理：可拦截未保存确认，未拦截时回桌面并保留任务；新增 filePreview 权限与 api.preview（SAF 选文件/目录、文本读写、另存、系统应用打开、图片缓存与缩放视图）；新增「文件预览」插件：文本/代码可编辑保存，图片与漫画支持翻页、连续滚动、双指缩放，PDF/Office/音视频交给系统应用。",
+  "versionCode": 11,
+  "versionName": "1.3.2",
+  "size": 16788530,
+  "sha256": "b70c2337ff92314719158788963c339a495f1bd55154b7d0a99de1b79ac3f7d1",
+  "downloadUrl": "https://github.com/sunset69/plugin-manager-releases/releases/download/v1.3.2/PluginManager-release-arm64.apk",
+  "notes": "新增系统「分享」入口：相册/文件管理器/浏览器/聊天软件分享文件时可直接打开文件预览插件并预览该文件；支持单文件、多文件与目录，多文件按顺序组成队列可上一个/下一个切换；分享仅接收 text/image/audio/video/PDF/JSON/XML/Word/Excel/PPT，zip 等不会出现；≤40MB 文件立即复制到缓存避免临时授权过期，插件未安装时给出原生提示。文件预览插件同步升级到 1.1.0。",
   "minSdk": 23,
   "publishedAt": "2026-11-13"
 }
