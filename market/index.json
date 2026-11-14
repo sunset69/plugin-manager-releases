@@ -1,7 +1,4 @@
 {
-  "format": 1,
-  "generator": "plugin-manager",
-  "updatedAt": "2026-11-14T10:29:04.045Z",
   "plugins": [
     {
       "id": "com.demo.calculator",
@@ -11,7 +8,7 @@
       "author": "demo",
       "permissions": [],
       "size": 1346,
-      "sha256": "043cb48ed33eaf0f778931560e1258388566f206d8bec30eeef018785288c248",
+      "sha256": "a76489de3926738886d92a21eb3066324ab5db26d00140199367956012dadf1e",
       "downloadUrl": "plugins/com.demo.calculator.zip"
     },
     {
@@ -24,7 +21,7 @@
         "storage"
       ],
       "size": 1421,
-      "sha256": "2353fe5a9147ad8210f6fece34e8376b46ed8595d86a057b7a4e347cd211df1a",
+      "sha256": "f03096c1a31ec08f5e45616d0391113de7c6ac2ad405b8b1d9e6ca27d2169253",
       "downloadUrl": "plugins/com.demo.notes.zip"
     },
     {
@@ -45,7 +42,7 @@
         "biometric"
       ],
       "size": 2514,
-      "sha256": "874f1e31ddab108208661b761044b1250fa604063eba960e1d896e59caadf260",
+      "sha256": "f727c5754ffd512beb33fb372cbd6787936503b04275f01ed19ed0a1ea2ba311",
       "downloadUrl": "plugins/com.demo.device.zip"
     },
     {
@@ -60,7 +57,7 @@
         "notification"
       ],
       "size": 2171,
-      "sha256": "2a7ea23d2b94adff6fa18e59073abff1d08521b6a3732c3d9a584d7379d5c298",
+      "sha256": "f381beea4b3c55f3e0a9311e0f0b4db047a8ceb7f3fad93f7c2c2f897064ef67",
       "downloadUrl": "plugins/com.demo.quickcapture.zip"
     },
     {
@@ -73,7 +70,7 @@
         "storage"
       ],
       "size": 8377,
-      "sha256": "8b465ddd7d2db21a3e6ab7c97d39bf3b7c1d65e82b2a0d290c110f3e2a9e2ec8",
+      "sha256": "296d2bcbf69477a681628396184ccee91a8045d9ae2e8dcac0b1e9a329894a88",
       "downloadUrl": "plugins/com.demo.mathpractice.zip"
     },
     {
@@ -90,7 +87,7 @@
         "exportFile"
       ],
       "size": 41771,
-      "sha256": "0fc62b9e035eb8f4f4bf1cb21abf212142901951cdc35113a69366a5f8740d8e",
+      "sha256": "83c5b5d6122e71715c90aa09e7db6b74b0a07196a11b083ab2342545b4c6b675",
       "downloadUrl": "plugins/com.demo.aipluginbuilder.zip"
     },
     {
@@ -104,21 +101,11 @@
         "storage"
       ],
       "size": 12488,
-      "sha256": "60335b746e03e3a7ee74fcb7987b269334e005fb88fe284f17ef660c5074cde0",
+      "sha256": "13d7ce9c76aa9a8edb1651ad91fa2094a9f6242d743e71dd1a038ff02a646fb9",
       "downloadUrl": "plugins/com.demo.fileviewer.zip"
-    },
-    {
-      "id": "com.demo.prismleap",
-      "name": "棱跃",
-      "version": "1.0.0",
-      "description": "横版跳跃闯关：左右移动、短按小跳长按高跳、踩敌、收集棱晶、三关难度曲线与本地进度保存",
-      "author": "demo",
-      "permissions": [
-        "storage"
-      ],
-      "size": 11594,
-      "sha256": "722fc9f3b1d737f3a6bf433a7b5b4ff3ab1f79f62ad5e580ed97ffe26755b777",
-      "downloadUrl": "plugins/com.demo.prismleap.zip"
     }
-  ]
+  ],
+  "format": 1,
+  "generator": "plugin-manager",
+  "updatedAt": "2026-11-13T08:51:01.314Z"
 }
